@@ -12,5 +12,5 @@
 
 在[Release](https://github.com/poormonitor/mirouter-ssh/releases)中下载构建好的exe文件并运行，填写stok和希望设定的passwd并按ok执行。看到success提示即为成功。
 
-Attention:stok错误也会返回success；ip错误超时程序可能无响应。
+Attention：stok错误也会返回success；ip错误超时程序可能无响应。
 
