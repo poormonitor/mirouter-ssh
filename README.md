@@ -7,6 +7,7 @@
 ## Screenshot
 
 ![image-20210206143545477](https://cdn.jsdelivr.net/gh/poormonitor/image@master/20210206/823b06c9be5d6c5b6e13f7cf91029548.png)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpoormonitor%2Fmirouter-ssh.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpoormonitor%2Fmirouter-ssh?ref=badge_shield)
 
 ## Usage
 
@@ -14,3 +15,7 @@
 
 Attention：stok错误也会返回success；ip错误超时程序可能无响应。
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpoormonitor%2Fmirouter-ssh.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpoormonitor%2Fmirouter-ssh?ref=badge_large)
